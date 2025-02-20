@@ -14,9 +14,11 @@ public:
     int counter = 0;
     int indexStart = 0;
     int indexDuplicates = 1;
+    vector<int> result;
 
     if (nums.size() > 0)
     {
+      result.push_back(nums[0]);
       counter = 1;
     }
 
@@ -24,15 +26,18 @@ public:
     {
       if (nums[indexStart] == nums[indexDuplicates])
       {
-        nums.erase(nums.begin() + indexDuplicates);
+        indexDuplicates++;
       }
       else
       {
         counter++;
-        indexStart++;
+        indexStart = indexDuplicates;
+        result.push_back(nums[indexStart]);
         indexDuplicates++;
       }
     }
+
+    nums = result;
     return counter;
   }
 };
